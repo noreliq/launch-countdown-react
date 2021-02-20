@@ -1,0 +1,56 @@
+@import "../assets/scss/variables.scss";
+@import "../assets/scss/mixins.scss";
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  padding-top: 100px;
+  padding-bottom: 60px;
+
+  h1 {
+    font-size: 22px;
+    letter-spacing: 6px;
+    text-align: center;
+    margin: 0 40px;
+  }
+
+  &__flippers {
+    display: flex;
+    margin-top: 80px;
+
+    .flipper + .flipper {
+      margin-left: 30px;
+    }
+
+    @include bp(630px) {
+      margin-top: 60px;
+      transform: scale(0.75);
+    }
+
+    @include bp(490px) {
+      margin-top: 40px;
+      transform: scale(0.5);
+    }
+  }
+
+  &__socials {
+    margin-top: auto;
+
+    color: $blue;
+
+    svg {
+      cursor: pointer;
+    }
+
+    svg + svg {
+      margin-left: 30px;
+    }
+
+    svg:hover {
+      color: $red;
+    }
+  }
+}

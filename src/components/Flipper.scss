@@ -1,0 +1,143 @@
+@import "../assets/scss/variables.scss";
+
+.flipper {
+  position: relative;
+  perspective: 600px;
+  width: 120px;
+  height: 120px;
+
+  &__label {
+    position: absolute;
+    bottom: -40px;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+    color: $blue;
+    letter-spacing: 3px;
+  }
+
+  &__half {
+    backface-visibility: hidden;
+
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    position: absolute;
+    box-sizing: content-box;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+    }
+
+    &--top {
+      z-index: 1;
+      background: $blue-dark;
+      border-radius: 6px 6px 0 0;
+      color: darken($red, 5%);
+
+      &::after {
+        background: rgba(0, 0, 0, 0.1);
+        bottom: 0;
+      }
+    }
+
+    &--bottom {
+      top: 50%;
+
+      background: lighten($blue-dark, 5%);
+      color: $red;
+      border-radius: 0 0 6px 6px;
+
+      &::after {
+        background: rgba(255, 255, 255, 0.05);
+        top: 0;
+      }
+    }
+  }
+
+  &__half--top.flipper__half--back {
+  }
+
+  &__half--top.flipper__half--front {
+    transform-origin: bottom;
+
+    .flip & {
+      transition: 300ms ease-out;
+      transition-property: transform, background-color;
+      background: darken($blue-dark, 10%);
+      transform: rotateX(-180deg);
+    }
+  }
+
+  &__half--bottom.flipper__half--back {
+    transform: rotateX(180deg);
+    transform-origin: top;
+
+    background: lighten($blue-dark, 15%);
+
+    .flip & {
+      transition: 300ms ease-out;
+      transition-property: transform, background-color;
+      background: lighten($blue-dark, 5%);
+      transform: rotateX(0deg);
+    }
+  }
+
+  &__half--bottom.flipper__half--front {
+    box-shadow: 0px 8px 0px 0px $blue-darkest;
+  }
+
+  $numSize: 66px;
+
+  &__number {
+    font-size: $numSize;
+    letter-spacing: 0.2rem;
+    line-height: $numSize;
+    text-align: center;
+    width: 100%;
+    display: block;
+    position: absolute;
+  }
+
+  &__half--bottom &__number {
+    top: -$numSize/2;
+  }
+
+  &__half--top &__number {
+    bottom: -$numSize/2;
+  }
+
+  $holeSize: 5px;
+
+  &__hole {
+    position: absolute;
+    display: block;
+    width: $holeSize;
+    height: $holeSize;
+    background: $blue-darkest;
+  }
+
+  &__half--top &__hole--left {
+    bottom: 0;
+    border-top-right-radius: $holeSize;
+  }
+
+  &__half--top &__hole--right {
+    bottom: 0;
+    right: 0;
+    border-top-left-radius: $holeSize;
+  }
+
+  &__half--bottom &__hole--left {
+    border-bottom-right-radius: $holeSize;
+  }
+
+  &__half--bottom &__hole--right {
+    right: 0;
+    border-bottom-left-radius: $holeSize;
+  }
+}

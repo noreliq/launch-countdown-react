@@ -1,0 +1,27 @@
+@import "./assets/scss/variables.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@700&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+
+  font-family: $font-red-hat;
+  font-weight: 700;
+  color: white;
+  text-transform: uppercase;
+  overflow: hidden;
+
+  user-select: none;
+
+  background: url("./assets/images/pattern-hills.svg") repeat-x left bottom,
+    url("./assets/images/bg-stars.svg"),
+    linear-gradient(to bottom, $blue-darkest, $blue-dark);
+}
